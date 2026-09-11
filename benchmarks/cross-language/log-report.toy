@@ -1,0 +1,23 @@
+\ Reuse the actual example, not a benchmark-specific Toy implementation.
+"../../examples/log-report/logs" import
+
+'checksum [
+    pairs 0 swap [ | pair |
+        $pair 0 at "/" split last >int 1 +
+        $pair 1 at | stats |
+        $stats 0 at 3 * $stats 1 at 5 * + $stats 2 at 7 * +
+        $stats 3 at 11 * + $stats 4 at 13 * + * +
+    ] fold
+] def
+
+argv 0 at read-file | text |
+cpu-time | started |
+$text logs.analyze | groups |
+$groups logs.report | report |
+cpu-time $started - | elapsed |
+
+\ --report is a correctness-only mode for field-by-field comparison.
+argc 1 > [ $report "{}" printf ] [
+    $groups checksum "{}\n" printf
+    $elapsed "{}\n" printf
+] ifelse

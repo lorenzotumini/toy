@@ -1,0 +1,1609 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "started_utc": "2026-09-11T09:44:57.393081+00:00",
+    "platform": "Linux-7.2.3-arch1-3-x86_64-with-glibc2.44",
+    "cpu": "11th Gen Intel(R) Core(TM) i9-11900K @ 3.50GHz",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "driver_python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+    "toy_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+    "toy_status": " M benchmarks/cross-language/README.md\n M benchmarks/cross-language/run.py\n?? benchmarks/cross-language/__pycache__/\n?? benchmarks/cross-language/log-report.js\n?? benchmarks/cross-language/log-report.py\n?? benchmarks/cross-language/log-report.toy\n?? benchmarks/cross-language/test_run.py\n",
+    "runs": 7,
+    "discarded_processes_per_cell": 1,
+    "jit_policy": "fresh process; first workload invocation, including tiering; no in-process warmup",
+    "order": "rotate by run index, reverse odd runs; workloads in requested order",
+    "environment": {
+      "LC_ALL": "C",
+      "PATH": "/bin:/usr/bin"
+    },
+    "workloads": [
+      "startup",
+      "arithmetic",
+      "dispatch",
+      "fibonacci",
+      "sequence",
+      "string",
+      "map-lookup",
+      "log-fixed",
+      "log-wide"
+    ],
+    "expected": {
+      "arithmetic": "10000000",
+      "dispatch": "10000000",
+      "fibonacci": "2178309",
+      "sequence": "200000",
+      "string": "200000",
+      "map-lookup": "74998500000",
+      "log-fixed": "3175586984",
+      "log-wide": "3691945368000"
+    },
+    "fixtures_sha256": {
+      "log-fixed": "cd93bdfff9043201dd43fc0882a65fcb510059f59d5f1a9bb148a0f004be1519",
+      "log-wide": "4151bb4285a7512342fea9df241bd31277f661e905bbb408aac1a6fb86f0ca35"
+    },
+    "application_sources_sha256": {
+      "benchmarks/check-applications.py": "ea70772c3eee33959d65c2e8bb0b715e0705547b27f5d1c84b90cc1ca37ad60f",
+      "examples/log-report/logs/aggregate.toy": "0c06da6476da1f702a5e03d6335b416692380414cb824ade936739ba47379fee",
+      "examples/log-report/logs/parse.toy": "44378d1c13b7a37b2353ed8a500ac99e9dc812642fbed5eed5c622df66daae33",
+      "examples/log-report/logs/report.toy": "af7094759164ee5219b38f41f546f4babfc7ce08ee7e5c1541f2f1b3075c6735"
+    },
+    "sources_sha256": {
+      "benchmarks/cross-language/empty.js": "883da4154e5d134d3fcfb4757bd7ab5547afeeeaeaa4914213a6f2889c8dc554",
+      "benchmarks/cross-language/gforth/arithmetic.fs": "77a2fd80ce044ce44ddd73522f5967113580f7be84404630028013df7a8b0d16",
+      "benchmarks/cross-language/gforth/dispatch.fs": "8a91b23958063d5e0754a88783c9b8cbfc0e0de910f9d53b72ac063e53b8c977",
+      "benchmarks/cross-language/gforth/fibonacci.fs": "2bbad0beaa2fe1af6356d1d12023e3363a714cfb28ecb779df5ecd0b2ef21334",
+      "benchmarks/cross-language/janet.janet": "5feeb505c8a0850cbb5fb38b278a027a54a504f335175b2a6eb81dd69ab2be37",
+      "benchmarks/cross-language/javascript.js": "690c84c88312ac42af6fed85b55dae5a93d948878e500bcd12b9384f5d4d4bcd",
+      "benchmarks/cross-language/joy/arithmetic.joy": "d96700878e9ee01deb47df2e26b4a759eafe8ec8bd3136aa763cfd23fbea318f",
+      "benchmarks/cross-language/joy/dispatch.joy": "0dfa3d1fe648c59926bd315980bffb348e5de0f2ea59b819e38663ab87fe272c",
+      "benchmarks/cross-language/joy/fibonacci.joy": "ff18019468ac7813a7faba4f64035f6bca41cff34cbbc2a17588dface38d8b8b",
+      "benchmarks/cross-language/joy/sequence.joy": "53a206059939cd91772256fd73d286a626ba173b5789860dcf785330720553db",
+      "benchmarks/cross-language/joy/string.joy": "9cbad23af7138fd11fad273c13542f6be68aa68500654ea7f4eca1d45b0e5fcd",
+      "benchmarks/cross-language/log-report.js": "e9a6afd8bd64a5614129a485e1e3a0b33b8bc3ee3ff283c3e9c067edcc47d1c3",
+      "benchmarks/cross-language/log-report.py": "430acc227fc4e4762b81969dad294b8fe5079488ccf0410baf4ba96bf432c717",
+      "benchmarks/cross-language/log-report.toy": "ff87bc7c76ae2e17307232df442ea948ac5a4f13b0623e63650dc5e6bbe705f2",
+      "benchmarks/cross-language/lua.lua": "68d0562fe36ffed267b78a5ae96cd5f3fd2211b0fdab1927a2c5474ede74157b",
+      "benchmarks/cross-language/python.py": "59b9da701c34bb32f60bec9fa7f9b6f10e7095097946c79beed651926e2f8c83",
+      "benchmarks/cross-language/run.py": "f0eb17cefb8b0a1590cea8424df57bd544460475e77d97ce7ccb1643f9543a45",
+      "benchmarks/cross-language/test_run.py": "583770a764958e522c747d8e9b057ba08df8815bee44530fa0fba143582f2bc4",
+      "benchmarks/cross-language/toy.toy": "d4673b01d81577ccc64a672d5f44d478aa2739e96c4877804619ac0dd1cceee1"
+    },
+    "runtimes": [
+      {
+        "name": "Toy",
+        "executable": "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+        "executable_sha256": "533d5576f35fb1413e4970da9dd732c5b39374dc1047e8e51118086786927bbc",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 1000.0
+      },
+      {
+        "name": "Joy0",
+        "executable": "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+        "executable_sha256": "46f83090929a3045b72f0de8343f4b172190004e8b186df5444445a517c16d7b",
+        "cwd": "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0",
+        "cwd_commit": "51414779a42d06c1c6aac2bf519c7deb72f96ad7",
+        "internal_ms_per_unit": 0.001
+      },
+      {
+        "name": "Joy current",
+        "executable": "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+        "executable_sha256": "fa3fe9977393764ace2ac116b55f1dff228a1b1d2e0d5d5e09e8a120d821811e",
+        "cwd": "/home/lorenzo/Projects/toy/build/cross-language/tools/joy",
+        "cwd_commit": "fe9fa0fa7db714340dbe17aedaff77f926e7c78a",
+        "internal_ms_per_unit": 1.0
+      },
+      {
+        "name": "Lua",
+        "executable": "/usr/bin/lua",
+        "executable_sha256": "3eab886a2dcd0f09362ed8fbd8f843b51bf0946270a87e48c46f9edb2e0d8dcb",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 1e-06
+      },
+      {
+        "name": "LuaJIT",
+        "executable": "/usr/bin/luajit-2.1.1788460057",
+        "executable_sha256": "f41ae0638cf981088c4139d0d4127c795461ecec412fe524a64d489e76f6ea96",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 1e-06
+      },
+      {
+        "name": "Python",
+        "executable": "/usr/bin/python3.14",
+        "executable_sha256": "d78f9cf7178ecff09963551399855543c297f37ac207e626228bfe43cb26a70c",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 1e-06
+      },
+      {
+        "name": "Node",
+        "executable": "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+        "executable_sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 0.001
+      },
+      {
+        "name": "Node --jitless",
+        "executable": "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+        "executable_sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+        "cwd": "/home/lorenzo/Projects/toy",
+        "cwd_commit": "7f84553616697ba04fcaded38ee21cc52589d6a7",
+        "internal_ms_per_unit": 0.001
+      }
+    ],
+    "executed_commands": {
+      "Toy": {
+        "startup": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "sequence"
+        ],
+        "string": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "string"
+        ],
+        "map-lookup": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/toy.toy",
+          "--",
+          "map-lookup"
+        ],
+        "log-fixed": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.toy",
+          "--",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-fixed.tsv"
+        ],
+        "log-wide": [
+          "/home/lorenzo/Projects/toy/build/gcc/release/toy",
+          "--file",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.toy",
+          "--",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-wide.tsv"
+        ]
+      },
+      "Joy0": {
+        "startup": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/arithmetic.joy"
+        ],
+        "dispatch": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/dispatch.joy"
+        ],
+        "fibonacci": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/fibonacci.joy"
+        ],
+        "sequence": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/sequence.joy"
+        ],
+        "string": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy0/joy",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/string.joy"
+        ]
+      },
+      "Joy current": {
+        "startup": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/arithmetic.joy"
+        ],
+        "dispatch": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/dispatch.joy"
+        ],
+        "fibonacci": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/fibonacci.joy"
+        ],
+        "sequence": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/sequence.joy"
+        ],
+        "string": [
+          "/home/lorenzo/Projects/toy/build/cross-language/tools/joy/joy",
+          "-l",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/joy/string.joy"
+        ]
+      },
+      "Lua": {
+        "startup": [
+          "/usr/bin/lua",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "sequence"
+        ],
+        "string": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "string"
+        ],
+        "map-lookup": [
+          "/usr/bin/lua",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "map-lookup"
+        ]
+      },
+      "LuaJIT": {
+        "startup": [
+          "/usr/bin/luajit",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "sequence"
+        ],
+        "string": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "string"
+        ],
+        "map-lookup": [
+          "/usr/bin/luajit",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/lua.lua",
+          "map-lookup"
+        ]
+      },
+      "Python": {
+        "startup": [
+          "/usr/bin/python3",
+          "/dev/null"
+        ],
+        "arithmetic": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "sequence"
+        ],
+        "string": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "string"
+        ],
+        "map-lookup": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/python.py",
+          "map-lookup"
+        ],
+        "log-fixed": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.py",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-fixed.tsv"
+        ],
+        "log-wide": [
+          "/usr/bin/python3",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.py",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-wide.tsv"
+        ]
+      },
+      "Node": {
+        "startup": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/empty.js"
+        ],
+        "arithmetic": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "sequence"
+        ],
+        "string": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "string"
+        ],
+        "map-lookup": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "map-lookup"
+        ],
+        "log-fixed": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.js",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-fixed.tsv"
+        ],
+        "log-wide": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.js",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-wide.tsv"
+        ]
+      },
+      "Node --jitless": {
+        "startup": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/empty.js"
+        ],
+        "arithmetic": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "arithmetic"
+        ],
+        "dispatch": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "dispatch"
+        ],
+        "fibonacci": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "fibonacci"
+        ],
+        "sequence": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "sequence"
+        ],
+        "string": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "string"
+        ],
+        "map-lookup": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/javascript.js",
+          "map-lookup"
+        ],
+        "log-fixed": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.js",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-fixed.tsv"
+        ],
+        "log-wide": [
+          "/home/lorenzo/.local/share/pi-node/node-v22.23.2-linux-x64/bin/node",
+          "--jitless",
+          "/home/lorenzo/Projects/toy/benchmarks/cross-language/log-report.js",
+          "/home/lorenzo/Projects/toy/build/cross-language/fixtures/log-wide.tsv"
+        ]
+      }
+    }
+  },
+  "process_ms": {
+    "startup": {
+      "Toy": [
+        0.467192,
+        0.483502,
+        0.503107,
+        0.396489,
+        0.525787,
+        0.370946,
+        0.49909
+      ],
+      "Joy0": [
+        0.476708,
+        0.392911,
+        0.428182,
+        0.448363,
+        0.451019,
+        0.391171,
+        0.447231
+      ],
+      "Joy current": [
+        0.381129,
+        0.39424,
+        0.359959,
+        0.384711,
+        0.409859,
+        0.371032,
+        0.355721
+      ],
+      "Lua": [
+        0.41771,
+        0.43691,
+        0.355634,
+        0.396029,
+        0.404898,
+        0.416596,
+        0.367244
+      ],
+      "LuaJIT": [
+        0.47242,
+        0.618907,
+        0.402009,
+        0.602129,
+        0.507003,
+        0.454236,
+        0.447967
+      ],
+      "Python": [
+        7.01176,
+        7.401737,
+        7.456693,
+        7.205083,
+        7.489656,
+        8.163249,
+        7.128498
+      ],
+      "Node": [
+        14.276232,
+        14.203758,
+        14.31334,
+        13.986119,
+        15.452947,
+        13.157605,
+        13.260885
+      ],
+      "Node --jitless": [
+        14.105615,
+        14.821503,
+        13.105023,
+        13.27499,
+        14.546128,
+        12.865112,
+        13.149647
+      ]
+    },
+    "arithmetic": {
+      "Toy": [
+        105.45519,
+        106.755765,
+        105.053687,
+        106.590112,
+        104.515015,
+        104.007036,
+        103.451403
+      ],
+      "Joy0": [
+        79.480851,
+        78.789337,
+        77.041115,
+        81.194534,
+        78.410773,
+        77.355021,
+        76.753103
+      ],
+      "Joy current": [
+        147.338403,
+        149.660437,
+        147.372033,
+        171.483176,
+        150.468277,
+        147.763418,
+        144.172037
+      ],
+      "Lua": [
+        31.78203,
+        31.567464,
+        31.23333,
+        32.14193,
+        32.533068,
+        31.33508,
+        30.861839
+      ],
+      "LuaJIT": [
+        11.01645,
+        10.961363,
+        9.829737,
+        10.269424,
+        9.009783,
+        8.975955,
+        8.905406
+      ],
+      "Python": [
+        251.013914,
+        279.077185,
+        252.476168,
+        258.425158,
+        256.29679,
+        257.53563,
+        262.62023
+      ],
+      "Node": [
+        22.593422,
+        24.164749,
+        22.194632,
+        25.587811,
+        23.180975,
+        22.86614,
+        23.161186
+      ],
+      "Node --jitless": [
+        106.450171,
+        112.519565,
+        105.769337,
+        113.556269,
+        106.623986,
+        111.013615,
+        106.857933
+      ]
+    },
+    "dispatch": {
+      "Toy": [
+        218.077297,
+        218.064914,
+        224.040152,
+        220.434326,
+        221.462322,
+        221.102739,
+        220.479079
+      ],
+      "Joy0": [
+        102.526942,
+        99.030905,
+        109.827704,
+        102.625066,
+        101.438167,
+        102.630435,
+        101.8711
+      ],
+      "Joy current": [
+        230.819557,
+        222.94416,
+        232.516041,
+        235.669186,
+        225.458121,
+        232.610587,
+        232.174775
+      ],
+      "Lua": [
+        154.330946,
+        153.286032,
+        156.034742,
+        156.425387,
+        150.919631,
+        152.245147,
+        152.51489
+      ],
+      "LuaJIT": [
+        11.013474,
+        9.752309,
+        9.165794,
+        9.005051,
+        8.96777,
+        9.114278,
+        8.768849
+      ],
+      "Python": [
+        382.335906,
+        392.937016,
+        389.225283,
+        392.324921,
+        378.199833,
+        370.184591,
+        373.259282
+      ],
+      "Node": [
+        23.718693,
+        22.581325,
+        23.498494,
+        21.653544,
+        23.065328,
+        23.538148,
+        23.123482
+      ],
+      "Node --jitless": [
+        228.833285,
+        221.100385,
+        223.214316,
+        220.738071,
+        218.927255,
+        220.639059,
+        225.145365
+      ]
+    },
+    "fibonacci": {
+      "Toy": [
+        572.792291,
+        572.582658,
+        566.582253,
+        578.996408,
+        598.66363,
+        574.618679,
+        576.130365
+      ],
+      "Joy0": [
+        143.55005,
+        148.127071,
+        142.405897,
+        147.394312,
+        150.41354,
+        143.282811,
+        142.522652
+      ],
+      "Joy current": [
+        307.368542,
+        300.549054,
+        302.791477,
+        304.630763,
+        308.736541,
+        304.778186,
+        298.704154
+      ],
+      "Lua": [
+        100.441706,
+        100.047541,
+        96.346505,
+        96.365258,
+        101.268813,
+        97.667217,
+        96.278841
+      ],
+      "LuaJIT": [
+        12.220551,
+        12.763951,
+        11.829835,
+        12.1885,
+        11.872907,
+        13.113594,
+        12.174189
+      ],
+      "Python": [
+        174.471771,
+        172.18787,
+        171.919468,
+        174.850103,
+        171.911417,
+        174.114723,
+        171.507116
+      ],
+      "Node": [
+        33.844944,
+        34.090539,
+        32.90501,
+        34.8979,
+        33.474694,
+        34.139008,
+        36.104797
+      ],
+      "Node --jitless": [
+        157.240043,
+        151.749596,
+        154.908731,
+        171.763215,
+        154.053504,
+        155.748858,
+        157.373353
+      ]
+    },
+    "sequence": {
+      "Toy": [
+        6.647913,
+        6.984585,
+        6.509389,
+        6.448637,
+        6.680706,
+        6.32346,
+        6.719652
+      ],
+      "Joy0": [
+        17.777694,
+        12.88919,
+        12.59059,
+        11.885494,
+        12.105233,
+        12.215893,
+        13.765293
+      ],
+      "Joy current": [
+        16.609972,
+        15.16177,
+        15.990717,
+        14.497065,
+        15.098824,
+        20.190721,
+        16.811286
+      ],
+      "Lua": [
+        4.252551,
+        4.59011,
+        4.247838,
+        4.260935,
+        4.113337,
+        4.044519,
+        4.215367
+      ],
+      "LuaJIT": [
+        1.916143,
+        2.010105,
+        2.068564,
+        2.06996,
+        1.931113,
+        1.894386,
+        1.930355
+      ],
+      "Python": [
+        14.279448,
+        15.557743,
+        14.593629,
+        17.432091,
+        14.246852,
+        14.970939,
+        13.919278
+      ],
+      "Node": [
+        19.546242,
+        20.479811,
+        20.526524,
+        20.538743,
+        20.929254,
+        19.762861,
+        21.028685
+      ],
+      "Node --jitless": [
+        29.810164,
+        36.46804,
+        29.392832,
+        32.01881,
+        29.06896,
+        27.600549,
+        28.164729
+      ]
+    },
+    "string": {
+      "Toy": [
+        3.211575,
+        4.06106,
+        3.27387,
+        3.286119,
+        3.982861,
+        3.237115,
+        3.250926
+      ],
+      "Joy0": [
+        205.507631,
+        207.49608,
+        206.119728,
+        210.949792,
+        208.206604,
+        210.051578,
+        207.996918
+      ],
+      "Joy current": [
+        255.798637,
+        254.918278,
+        246.312936,
+        250.210856,
+        262.305928,
+        261.271912,
+        248.467439
+      ],
+      "Lua": [
+        3.749584,
+        3.690231,
+        3.652441,
+        3.742739,
+        4.259216,
+        3.62636,
+        3.695909
+      ],
+      "LuaJIT": [
+        2.182966,
+        2.264777,
+        2.093491,
+        2.244431,
+        2.185543,
+        2.372243,
+        2.075787
+      ],
+      "Python": [
+        11.25879,
+        12.748783,
+        11.812132,
+        11.872872,
+        12.365315,
+        11.836172,
+        11.843812
+      ],
+      "Node": [
+        20.768166,
+        20.229727,
+        20.338567,
+        19.914956,
+        20.136527,
+        20.867074,
+        19.400832
+      ],
+      "Node --jitless": [
+        25.555289,
+        26.720348,
+        28.780281,
+        27.944285,
+        30.509201,
+        26.304454,
+        25.146476
+      ]
+    },
+    "map-lookup": {
+      "Toy": [
+        58.956653,
+        59.318746,
+        59.646144,
+        59.141533,
+        62.297317,
+        60.296172,
+        59.337261
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [
+        5.573852,
+        5.575582,
+        5.630029,
+        5.48751,
+        5.925239,
+        5.557046,
+        5.572127
+      ],
+      "LuaJIT": [
+        1.728356,
+        1.942423,
+        1.728563,
+        1.63738,
+        1.774699,
+        1.848305,
+        1.707398
+      ],
+      "Python": [
+        56.644265,
+        55.088695,
+        55.903044,
+        56.141568,
+        56.973979,
+        56.080778,
+        55.892769
+      ],
+      "Node": [
+        35.536337,
+        35.720197,
+        34.652799,
+        35.039501,
+        34.559681,
+        33.985686,
+        35.331809
+      ],
+      "Node --jitless": [
+        61.565806,
+        62.544672,
+        60.253316,
+        61.208959,
+        62.188177,
+        62.716619,
+        60.476806
+      ]
+    },
+    "log-fixed": {
+      "Toy": [
+        47.677958,
+        45.974958,
+        46.935223,
+        46.182592,
+        49.148146,
+        48.492811,
+        46.229208
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [],
+      "LuaJIT": [],
+      "Python": [
+        82.954706,
+        86.566185,
+        83.384475,
+        86.727411,
+        98.355363,
+        86.211084,
+        83.152071
+      ],
+      "Node": [
+        37.470093,
+        38.324086,
+        38.292486,
+        41.944302,
+        41.080933,
+        38.208112,
+        37.874921
+      ],
+      "Node --jitless": [
+        62.766969,
+        63.906961,
+        63.561742,
+        62.683662,
+        62.889596,
+        61.139059,
+        64.342447
+      ]
+    },
+    "log-wide": {
+      "Toy": [
+        74.967867,
+        66.934636,
+        70.587931,
+        68.657427,
+        70.7782,
+        68.702722,
+        68.837077
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [],
+      "LuaJIT": [],
+      "Python": [
+        99.08378,
+        101.432339,
+        104.877403,
+        101.548638,
+        100.637507,
+        105.567943,
+        101.07498
+      ],
+      "Node": [
+        61.612096,
+        64.646896,
+        62.707564,
+        62.858667,
+        62.427215,
+        62.448655,
+        65.6432
+      ],
+      "Node --jitless": [
+        91.869819,
+        88.797835,
+        85.245056,
+        86.224869,
+        84.768243,
+        86.651182,
+        84.98873
+      ]
+    }
+  },
+  "internal_ms": {
+    "startup": {
+      "Toy": [],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [],
+      "LuaJIT": [],
+      "Python": [],
+      "Node": [],
+      "Node --jitless": []
+    },
+    "arithmetic": {
+      "Toy": [
+        104.454,
+        105.866,
+        104.264,
+        105.44600000000001,
+        103.63699999999999,
+        103.176,
+        102.672
+      ],
+      "Joy0": [
+        78.378,
+        77.816,
+        76.18900000000001,
+        80.035,
+        77.415,
+        76.275,
+        75.918
+      ],
+      "Joy current": [
+        146.0,
+        148.0,
+        146.0,
+        170.0,
+        149.0,
+        146.0,
+        143.0
+      ],
+      "Lua": [
+        30.906,
+        30.891,
+        30.386,
+        31.346999999999998,
+        31.625,
+        30.613,
+        30.166
+      ],
+      "LuaJIT": [
+        10.215,
+        10.116,
+        8.927,
+        9.315,
+        8.198,
+        8.176,
+        8.203999999999999
+      ],
+      "Python": [
+        242.40426,
+        269.937098,
+        242.245725,
+        248.827825,
+        247.66728799999999,
+        249.01416999999998,
+        254.07528399999998
+      ],
+      "Node": [
+        6.07,
+        6.785,
+        6.168,
+        6.964,
+        6.323,
+        6.412,
+        6.301
+      ],
+      "Node --jitless": [
+        85.034,
+        89.842,
+        84.642,
+        89.474,
+        85.191,
+        86.979,
+        84.834
+      ]
+    },
+    "dispatch": {
+      "Toy": [
+        216.915,
+        216.971,
+        222.81400000000002,
+        219.032,
+        220.321,
+        219.905,
+        218.40200000000002
+      ],
+      "Joy0": [
+        101.48,
+        97.961,
+        108.59400000000001,
+        101.374,
+        100.321,
+        101.437,
+        100.297
+      ],
+      "Joy current": [
+        229.0,
+        221.0,
+        231.0,
+        234.0,
+        224.0,
+        231.0,
+        230.0
+      ],
+      "Lua": [
+        153.05599999999998,
+        152.18099999999998,
+        154.951,
+        155.17499999999998,
+        149.874,
+        151.082,
+        151.397
+      ],
+      "LuaJIT": [
+        10.165,
+        8.882,
+        8.219,
+        8.125,
+        8.189,
+        8.222999999999999,
+        8.023
+      ],
+      "Python": [
+        373.314827,
+        382.788568,
+        379.951841,
+        383.072721,
+        368.36623299999997,
+        361.300935,
+        364.555888
+      ],
+      "Node": [
+        6.992,
+        6.724,
+        6.65,
+        6.976,
+        6.5280000000000005,
+        6.6610000000000005,
+        6.694
+      ],
+      "Node --jitless": [
+        203.829,
+        200.187,
+        200.004,
+        198.108,
+        196.936,
+        200.09900000000002,
+        200.123
+      ]
+    },
+    "fibonacci": {
+      "Toy": [
+        571.304,
+        570.7529999999999,
+        565.153,
+        577.4789999999999,
+        596.7320000000001,
+        572.8030000000001,
+        574.76
+      ],
+      "Joy0": [
+        142.076,
+        146.93800000000002,
+        141.379,
+        146.124,
+        149.189,
+        142.197,
+        141.433
+      ],
+      "Joy current": [
+        306.0,
+        299.0,
+        301.0,
+        303.0,
+        307.0,
+        303.0,
+        297.0
+      ],
+      "Lua": [
+        99.44999999999999,
+        99.187,
+        95.435,
+        95.485,
+        100.23599999999999,
+        96.798,
+        95.205
+      ],
+      "LuaJIT": [
+        11.338999999999999,
+        11.997,
+        11.007,
+        11.363,
+        11.109,
+        12.208,
+        11.248999999999999
+      ],
+      "Python": [
+        166.170563,
+        163.556026,
+        163.934413,
+        166.60693799999999,
+        163.940506,
+        165.95644,
+        163.587773
+      ],
+      "Node": [
+        16.455000000000002,
+        16.708000000000002,
+        16.138,
+        18.39,
+        16.531,
+        16.407,
+        16.330000000000002
+      ],
+      "Node --jitless": [
+        135.972,
+        130.828,
+        133.449,
+        148.69,
+        132.953,
+        135.344,
+        133.066
+      ]
+    },
+    "sequence": {
+      "Toy": [
+        6.041,
+        6.313999999999999,
+        5.944000000000001,
+        5.794,
+        5.992,
+        5.7940000000000005,
+        6.024
+      ],
+      "Joy0": [
+        16.209,
+        12.094,
+        11.776,
+        11.157,
+        11.450000000000001,
+        11.401,
+        13.087
+      ],
+      "Joy current": [
+        15.0,
+        14.0,
+        15.0,
+        13.0,
+        14.0,
+        19.0,
+        16.0
+      ],
+      "Lua": [
+        3.509,
+        3.871,
+        3.564,
+        3.7159999999999997,
+        3.4819999999999998,
+        3.4909999999999997,
+        3.574
+      ],
+      "LuaJIT": [
+        1.2069999999999999,
+        1.248,
+        1.253,
+        1.3319999999999999,
+        1.2469999999999999,
+        1.224,
+        1.181
+      ],
+      "Python": [
+        6.849449,
+        6.991618,
+        6.592588999999999,
+        8.470134,
+        6.812113999999999,
+        7.04766,
+        6.72314
+      ],
+      "Node": [
+        6.026,
+        5.462,
+        6.07,
+        6.1160000000000005,
+        5.406,
+        5.938,
+        5.827
+      ],
+      "Node --jitless": [
+        9.042,
+        8.398,
+        9.94,
+        11.772,
+        8.122,
+        8.009,
+        8.151
+      ]
+    },
+    "string": {
+      "Toy": [
+        2.66,
+        2.691,
+        2.711,
+        2.588,
+        3.346,
+        2.55,
+        2.666
+      ],
+      "Joy0": [
+        184.59300000000002,
+        186.505,
+        185.466,
+        189.37,
+        186.52100000000002,
+        187.671,
+        186.729
+      ],
+      "Joy current": [
+        254.0,
+        253.0,
+        245.0,
+        248.0,
+        260.0,
+        258.0,
+        247.0
+      ],
+      "Lua": [
+        3.037,
+        3.1229999999999998,
+        2.927,
+        3.2079999999999997,
+        3.364,
+        2.972,
+        2.943
+      ],
+      "LuaJIT": [
+        1.4789999999999999,
+        1.513,
+        1.423,
+        1.5739999999999998,
+        1.575,
+        1.4709999999999999,
+        1.44
+      ],
+      "Python": [
+        3.911352,
+        4.088011,
+        4.230077,
+        4.096152,
+        4.264438,
+        4.065964999999999,
+        4.216876
+      ],
+      "Node": [
+        4.62,
+        4.76,
+        4.889,
+        4.698,
+        4.674,
+        4.5200000000000005,
+        4.54
+      ],
+      "Node --jitless": [
+        6.015000000000001,
+        6.087,
+        6.597,
+        5.986,
+        6.146,
+        5.976,
+        5.875
+      ]
+    },
+    "map-lookup": {
+      "Toy": [
+        58.187000000000005,
+        58.522999999999996,
+        58.916000000000004,
+        58.45,
+        61.558,
+        59.499,
+        58.625
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [
+        4.872,
+        4.939,
+        4.899,
+        4.903,
+        5.209,
+        4.984,
+        4.894
+      ],
+      "LuaJIT": [
+        1.035,
+        1.151,
+        1.042,
+        1.031,
+        1.1079999999999999,
+        1.028,
+        1.039
+      ],
+      "Python": [
+        48.626580999999995,
+        47.086372,
+        47.460854999999995,
+        48.040946999999996,
+        48.971717999999996,
+        47.995391,
+        47.802845999999995
+      ],
+      "Node": [
+        19.990000000000002,
+        20.169,
+        19.782,
+        20.768,
+        20.307000000000002,
+        21.069,
+        20.739
+      ],
+      "Node --jitless": [
+        41.249,
+        40.538000000000004,
+        39.925000000000004,
+        40.279,
+        40.446,
+        40.96,
+        40.329
+      ]
+    },
+    "log-fixed": {
+      "Toy": [
+        46.387,
+        44.675000000000004,
+        45.718,
+        44.956999999999994,
+        48.062999999999995,
+        47.233999999999995,
+        44.970000000000006
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [],
+      "LuaJIT": [],
+      "Python": [
+        67.72880099999999,
+        70.74707699999999,
+        68.262057,
+        70.35467799999999,
+        82.57075999999999,
+        70.54624799999999,
+        68.085826
+      ],
+      "Node": [
+        24.485,
+        24.618000000000002,
+        24.259,
+        27.772000000000002,
+        25.681,
+        24.421,
+        24.231
+      ],
+      "Node --jitless": [
+        41.024,
+        44.289,
+        41.629,
+        41.539,
+        42.454,
+        40.349000000000004,
+        42.057
+      ]
+    },
+    "log-wide": {
+      "Toy": [
+        67.44699999999999,
+        59.032,
+        62.752,
+        61.251,
+        63.21399999999999,
+        61.42,
+        60.946
+      ],
+      "Joy0": [],
+      "Joy current": [],
+      "Lua": [],
+      "LuaJIT": [],
+      "Python": [
+        79.565017,
+        80.807431,
+        83.89175399999999,
+        80.650662,
+        80.701478,
+        85.189523,
+        81.387354
+      ],
+      "Node": [
+        47.538000000000004,
+        49.777,
+        48.736000000000004,
+        49.963,
+        48.501,
+        47.831,
+        48.331
+      ],
+      "Node --jitless": [
+        66.125,
+        63.504,
+        60.994,
+        62.032000000000004,
+        61.129,
+        61.275,
+        62.125
+      ]
+    }
+  }
+}

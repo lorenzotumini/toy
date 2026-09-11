@@ -89,8 +89,10 @@ Current workloads:
 
 - `captures.toy`: checked deep capture-free call chains and repeated wide local
   scopes, isolating dynamic lookup and capture-storage costs.
-- `cross-language/`: optional checksum-validated comparison with Joy0, current
-  Joy, Lua, Python, Bun, and Node, run separately under Linux;
+- `cross-language/`: optional checksum-validated microbenchmarks and log-report
+  application ports, comparing Joy0, current Joy, Lua/LuaJIT, Python, and
+  Node (JIT and JIT-disabled), with optional Janet/Bun/Gforth adapters; run
+  separately under Linux and retain raw samples with `--output`;
 - `construction-patterns.toy`: equivalent captured, stack-threaded, list,
   `infra`, and one-shot conversion patterns for vectors, maps, and strings;
 - `control-ownership.toy`: ambient collection updates through state-threading

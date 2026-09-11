@@ -41,6 +41,16 @@ shapes and graph topologies, and a host-driven event-processing example that
 exercises embedding callbacks. Let concrete consumer use determine further
 workloads rather than trying to represent every language feature in one suite.
 
+The [cross-language refresh](../benchmarks/results/2026-09-11-cross-language.md)
+adds external reference points, including checked Python/JavaScript ports of
+the log reporter. Keep JIT configurations and process versus workload timing
+separate. Follow up with warmed in-process measurements and a particle/float
+application port before generalizing beyond short-lived text processing.
+Use recursion and call overhead as targeted research candidates, not an
+aggregate cross-language score; string-builder complexity and Lua's dense
+integer table layout make two of the historical microbenchmark rows unequal
+tests of VM speed.
+
 ### C Interop
 
 Embedding, C extensions, `core:ffi`, and generated bindings share one
