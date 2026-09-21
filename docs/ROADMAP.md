@@ -51,6 +51,18 @@ aggregate cross-language score; string-builder complexity and Lua's dense
 integer table layout make two of the historical microbenchmark rows unequal
 tests of VM speed.
 
+The [call-path follow-up](../benchmarks/results/2026-09-11-call-path.md) tested
+frame ownership, quotation-cache acquisition, prepared user-word calls, and
+initial conditional scheduling. None justified a runtime change across the
+application/compiler checks. Prepared calls helped a tight user-word loop;
+skipping initial conditional steps helped tight branches, but neither provided
+a dependable application improvement. Do not assume the quotation cache or
+`binrec` controller is the main remaining bottleneck on that evidence.
+Next isolate predicate snapshot/refcount traffic and temporary boolean values
+with allocation/profile evidence, then test value-representation changes
+separately. Keep the new call-path diagnostics and application phase checks in
+those comparisons; reducing a counter is not itself a performance milestone.
+
 ### C Interop
 
 Embedding, C extensions, `core:ffi`, and generated bindings share one

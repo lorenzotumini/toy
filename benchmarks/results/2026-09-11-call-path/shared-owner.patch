@@ -1,0 +1,38 @@
+diff --git a/src/tf_exec.c b/src/tf_exec.c
+index cb4b54c..b24f0be 100644
+--- a/src/tf_exec.c
++++ b/src/tf_exec.c
+@@ -424,7 +424,9 @@ static void frame_push_program_kind(tf_ctx *ctx, tf_obj *program,
+     ctx->call_stack[ctx->call_stack_len].as.program.vars.len = 0;
+     ctx->call_stack[ctx->call_stack_len].as.program.repeats = 0;
+     ctx->call_stack[ctx->call_stack_len].call_site = ctx->current_span;
+-    tf_obj_retain(program);
++    if (!ctx->call_stack[ctx->call_stack_len].as.program.quick) {
++        tf_obj_retain(program);
++    }
+     ctx->call_stack_len++;
+     TF_METRIC_INC(ctx, program_frames);
+     TF_METRIC_MAX(ctx, max_frame_depth, ctx->call_stack_len);
+@@ -473,8 +475,11 @@ void tf_frame_pop(tf_ctx *ctx, tf_ret status) {
+             tf_obj_release(binding->val);
+         }
+         ctx->captures_len = base;
+-        quick_program_release(f->as.program.quick);
+-        tf_obj_release(f->as.program.program);
++        if (f->as.program.quick) {
++            quick_program_release(f->as.program.quick);
++        } else {
++            tf_obj_release(f->as.program.program);
++        }
+     } else if (f->as.native.cleanup) {
+         f->as.native.cleanup(ctx, f->as.native.state, status);
+     }
+@@ -1345,7 +1350,7 @@ bool tf_frame_push_repeat(tf_ctx *ctx, tf_obj *program, int64_t count) {
+     frame->as.program.vars.len = 0;
+     frame->as.program.repeats = (size_t)count;
+     frame->call_site = ctx->current_span;
+-    tf_obj_retain(program);
++    if (!frame->as.program.quick) tf_obj_retain(program);
+     ctx->call_stack_len++;
+     TF_METRIC_INC(ctx, program_frames);
+     TF_METRIC_MAX(ctx, max_frame_depth, ctx->call_stack_len);

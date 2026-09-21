@@ -1,0 +1,48 @@
+paired comparison
+baseline: build/perf/call-path/baseline/toy
+candidate: build/perf/call-path/eager-if/toy
+pairs: 7, warmups: 1, platform: Linux, logical processors: 16
+
+json.toy
+pair 1 (baseline first): 389.868 ms baseline, 388.138 ms candidate, ratio 0.9956
+pair 2 (candidate first): 392.856 ms baseline, 391.153 ms candidate, ratio 0.9957
+pair 3 (baseline first): 386.541 ms baseline, 378.633 ms candidate, ratio 0.9795
+pair 4 (candidate first): 394.219 ms baseline, 385.983 ms candidate, ratio 0.9791
+pair 5 (baseline first): 399.238 ms baseline, 380.181 ms candidate, ratio 0.9523
+pair 6 (candidate first): 417.503 ms baseline, 430.093 ms candidate, ratio 1.0302
+pair 7 (baseline first): 435.770 ms baseline, 423.000 ms candidate, ratio 0.9707
+medians: 394.219 ms baseline, 388.138 ms candidate
+median paired ratio: 0.9795 (faster 2.05%)
+
+graph-search.toy
+pair 1 (baseline first): 58.429 ms baseline, 56.190 ms candidate, ratio 0.9617
+pair 2 (candidate first): 56.565 ms baseline, 56.417 ms candidate, ratio 0.9974
+pair 3 (baseline first): 55.757 ms baseline, 57.093 ms candidate, ratio 1.0240
+pair 4 (candidate first): 54.553 ms baseline, 58.585 ms candidate, ratio 1.0739
+pair 5 (baseline first): 54.231 ms baseline, 53.896 ms candidate, ratio 0.9938
+pair 6 (candidate first): 55.600 ms baseline, 54.734 ms candidate, ratio 0.9844
+pair 7 (baseline first): 56.511 ms baseline, 54.559 ms candidate, ratio 0.9654
+medians: 55.757 ms baseline, 56.190 ms candidate
+median paired ratio: 0.9938 (faster 0.62%)
+
+log-report.toy
+pair 1 (baseline first): 236.707 ms baseline, 241.623 ms candidate, ratio 1.0208
+pair 2 (candidate first): 236.303 ms baseline, 239.987 ms candidate, ratio 1.0156
+pair 3 (baseline first): 243.338 ms baseline, 235.977 ms candidate, ratio 0.9698
+pair 4 (candidate first): 227.594 ms baseline, 240.279 ms candidate, ratio 1.0557
+pair 5 (baseline first): 221.610 ms baseline, 222.969 ms candidate, ratio 1.0061
+pair 6 (candidate first): 224.678 ms baseline, 221.553 ms candidate, ratio 0.9861
+pair 7 (baseline first): 221.435 ms baseline, 220.967 ms candidate, ratio 0.9979
+medians: 227.594 ms baseline, 235.977 ms candidate
+median paired ratio: 1.0061 (slower 0.61%)
+
+particles.toy
+pair 1 (baseline first): 314.427 ms baseline, 288.262 ms candidate, ratio 0.9168
+pair 2 (candidate first): 298.409 ms baseline, 285.759 ms candidate, ratio 0.9576
+pair 3 (baseline first): 287.501 ms baseline, 279.244 ms candidate, ratio 0.9713
+pair 4 (candidate first): 275.193 ms baseline, 270.608 ms candidate, ratio 0.9833
+pair 5 (baseline first): 270.964 ms baseline, 264.264 ms candidate, ratio 0.9753
+pair 6 (candidate first): 277.288 ms baseline, 265.099 ms candidate, ratio 0.9560
+pair 7 (baseline first): 279.129 ms baseline, 273.989 ms candidate, ratio 0.9816
+medians: 279.129 ms baseline, 273.989 ms candidate
+median paired ratio: 0.9713 (faster 2.87%)

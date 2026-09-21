@@ -1,0 +1,40 @@
+paired comparison
+baseline: build/perf/call-path/baseline/toy
+candidate: build/perf/call-path/prepared-user/toy
+pairs: 5, warmups: 1, platform: Linux, logical processors: 16
+
+json.toy
+pair 1 (baseline first): 375.217 ms baseline, 383.058 ms candidate, ratio 1.0209
+pair 2 (candidate first): 380.785 ms baseline, 389.709 ms candidate, ratio 1.0234
+pair 3 (baseline first): 385.816 ms baseline, 380.511 ms candidate, ratio 0.9863
+pair 4 (candidate first): 383.330 ms baseline, 390.684 ms candidate, ratio 1.0192
+pair 5 (baseline first): 375.924 ms baseline, 384.383 ms candidate, ratio 1.0225
+medians: 380.785 ms baseline, 384.383 ms candidate
+median paired ratio: 1.0209 (slower 2.09%)
+
+graph-search.toy
+pair 1 (baseline first): 54.779 ms baseline, 56.536 ms candidate, ratio 1.0321
+pair 2 (candidate first): 53.385 ms baseline, 56.609 ms candidate, ratio 1.0604
+pair 3 (baseline first): 53.722 ms baseline, 53.378 ms candidate, ratio 0.9936
+pair 4 (candidate first): 53.104 ms baseline, 54.284 ms candidate, ratio 1.0222
+pair 5 (baseline first): 53.621 ms baseline, 53.269 ms candidate, ratio 0.9934
+medians: 53.621 ms baseline, 54.284 ms candidate
+median paired ratio: 1.0222 (slower 2.22%)
+
+log-report.toy
+pair 1 (baseline first): 217.969 ms baseline, 220.662 ms candidate, ratio 1.0124
+pair 2 (candidate first): 217.912 ms baseline, 226.200 ms candidate, ratio 1.0380
+pair 3 (baseline first): 213.849 ms baseline, 217.280 ms candidate, ratio 1.0160
+pair 4 (candidate first): 217.250 ms baseline, 219.517 ms candidate, ratio 1.0104
+pair 5 (baseline first): 220.288 ms baseline, 215.686 ms candidate, ratio 0.9791
+medians: 217.912 ms baseline, 219.517 ms candidate
+median paired ratio: 1.0124 (slower 1.24%)
+
+particles.toy
+pair 1 (baseline first): 269.539 ms baseline, 269.136 ms candidate, ratio 0.9985
+pair 2 (candidate first): 276.501 ms baseline, 265.312 ms candidate, ratio 0.9595
+pair 3 (baseline first): 257.991 ms baseline, 273.811 ms candidate, ratio 1.0613
+pair 4 (candidate first): 265.508 ms baseline, 268.263 ms candidate, ratio 1.0104
+pair 5 (baseline first): 260.268 ms baseline, 268.916 ms candidate, ratio 1.0332
+medians: 265.508 ms baseline, 268.916 ms candidate
+median paired ratio: 1.0104 (slower 1.04%)

@@ -1,0 +1,50 @@
+diff --git a/src/tf_exec.c b/src/tf_exec.c
+index cb4b54c..0a99415 100644
+--- a/src/tf_exec.c
++++ b/src/tf_exec.c
+@@ -304,20 +304,10 @@ static bool program_contains_call(tf_obj *program) {
+     return false;
+ }
+ 
+-static tf_quick_program *quick_program_acquire(tf_ctx *ctx, tf_obj *program,
+-                                               size_t package_index) {
+-    if (program->vector.len == 0) return NULL;
+-
+-    size_t set = quick_program_set(program, package_index);
++static TF_NOINLINE tf_quick_program *quick_program_acquire_slow(
++    tf_ctx *ctx, tf_obj *program, size_t package_index, size_t set) {
+     size_t first_slot = quick_program_slot(set, 0);
+-    /* Primary ways stay compact; overflow ways preserve MRU order. */
+-    tf_quick_program *quick = ctx->quick_programs[first_slot];
+-    if (quick && quick->program == program &&
+-        quick->package_index == package_index) {
+-        TF_METRIC_INC(ctx, quick_program_cache_hits);
+-        quick->refcount++;
+-        return quick;
+-    }
++    tf_quick_program *quick;
+     for (size_t way = 1; way < TF_QUICK_PROGRAM_CACHE_WAYS; way++) {
+         size_t slot = quick_program_slot(set, way);
+         quick = ctx->quick_programs[slot];
+@@ -365,6 +355,21 @@ static tf_quick_program *quick_program_acquire(tf_ctx *ctx, tf_obj *program,
+     return quick;
+ }
+ 
++static inline tf_quick_program *quick_program_acquire(tf_ctx *ctx,
++                                                      tf_obj *program,
++                                                      size_t package_index) {
++    if (program->vector.len == 0) return NULL;
++    size_t set = quick_program_set(program, package_index);
++    tf_quick_program *quick = ctx->quick_programs[set];
++    if (quick && quick->program == program &&
++        quick->package_index == package_index) {
++        TF_METRIC_INC(ctx, quick_program_cache_hits);
++        quick->refcount++;
++        return quick;
++    }
++    return quick_program_acquire_slow(ctx, program, package_index, set);
++}
++
+ static tf_word *quickened_call_resolve(tf_ctx *ctx, tf_frame *frame,
+                                        tf_obj *call, tf_quick_call *cached) {
+     TF_METRIC_INC(ctx, quickened_lookup_misses);

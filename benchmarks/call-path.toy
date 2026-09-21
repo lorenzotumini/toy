@@ -1,0 +1,28 @@
+\ Controlled call shapes. All cases verify results; recursion uses the same
+\ naive algorithm. These are diagnostics, not representative applications.
+'increment [ 1 + ] def
+'fib-word [
+    dup 2 < [] [ pred dup fib-word swap pred fib-word + ] ifelse
+] def
+'fib-predicate [
+    [ 2 < ] [] [ pred dup fib-predicate swap pred fib-predicate + ] ifelse
+] def
+
+'measure [ | body expected name |
+    monotonic-ns | started |
+    $body exec | result |
+    monotonic-ns $started - | elapsed |
+    $result $expected != [ "call-path checksum mismatch" error ] if
+    $name $elapsed $result "call-path case={} elapsed_ns={} checksum={}\n" printf
+] def
+
+[ 0 5000000 [ 1 + ] times ] 5000000 "inline" measure
+[ 0 5000000 [ increment ] times ] 5000000 "user-word" measure
+[ 0 5000000 [ [ 1 + ] exec ] times ] 5000000 "quotation-exec" measure
+[ 0 5000000 [ 'increment exec ] times ] 5000000 "symbol-exec" measure
+[ 0 1000000 [ true [ 1 + ] if ] times ] 1000000 "boolean-branch" measure
+[ 0 1000000 [ [ 0 >= ] [ 1 + ] if ] times ] 1000000 "predicate-branch" measure
+[ 28 fib-word ] 317811 "fib-word" measure
+[ 28 fib-predicate ] 317811 "fib-predicate" measure
+[ 28 [ 2 < ] [] [ pred dup pred ] [ + ] binrec ] 317811 "fib-binrec" measure
+[ 0 0 200000 range [ + ] fold ] 19999900000 "fold" measure

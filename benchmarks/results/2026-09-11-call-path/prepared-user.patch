@@ -1,0 +1,160 @@
+diff --git a/src/tf_dictionary.c b/src/tf_dictionary.c
+index 9021b35..0593b4c 100644
+--- a/src/tf_dictionary.c
++++ b/src/tf_dictionary.c
+@@ -59,6 +59,7 @@ void tf_dict_free(tf_ctx *ctx) {
+         if (word->owns_name) free((char *)word->name);
+         free(word->doc_stack_effect);
+         free(word->doc_description);
++        tf_word_unprepare(word);
+         if (word->type == TF_WORD_USER) tf_obj_release(word->user_impl);
+     }
+     free(ctx->words.entries);
+@@ -146,6 +147,7 @@ static tf_word *dict_insert_word(tf_ctx *ctx, size_t package_index,
+     word->doc_description = NULL;
+     word->type = TF_WORD_NATIVE;
+     word->native_impl = NULL;
++    word->prepared = NULL;
+     ctx->words.buckets[slot] = entry_index + 1;
+     tf_dict_resolution_changed(ctx);
+     return word;
+@@ -186,6 +188,7 @@ static void dict_set_native(tf_ctx *ctx, const char *name, tf_native_fn cb,
+                                           name_len);
+     bool replacing = word != NULL;
+     if (word) {
++        tf_word_unprepare(word);
+         if (word->type == TF_WORD_USER) tf_obj_release(word->user_impl);
+         dict_clear_doc(word);
+     } else {
+@@ -237,6 +240,7 @@ bool tf_dict_set_user_in_package(tf_ctx *ctx, size_t package_index,
+                                                    name->span.offset);
+     bool replacing = word != NULL;
+     if (word) {
++        tf_word_unprepare(word);
+         if (word->type == TF_WORD_USER) tf_obj_release(word->user_impl);
+     } else {
+         word = dict_insert_word(ctx, package_index, name->str.ptr,
+diff --git a/src/tf_exec.c b/src/tf_exec.c
+index cb4b54c..5d89c87 100644
+--- a/src/tf_exec.c
++++ b/src/tf_exec.c
+@@ -261,6 +261,12 @@ static void quick_program_release(tf_quick_program *quick) {
+     free(quick);
+ }
+ 
++void tf_word_unprepare(tf_word *word) {
++    tf_quick_program *quick = word->prepared;
++    word->prepared = NULL;
++    quick_program_release(quick);
++}
++
+ void tf_quick_program_cache_clear(tf_ctx *ctx) {
+     if (!ctx) return;
+     for (size_t i = 0; i < ctx->call_stack_len; i++) {
+@@ -271,6 +277,9 @@ void tf_quick_program_cache_clear(tf_ctx *ctx) {
+         tf_quick_program *quick = frame->as.program.quick;
+         memset(quick->calls, 0, quick->len * sizeof(tf_quick_call));
+     }
++    for (size_t i = 0; i < ctx->words.count; i++) {
++        tf_word_unprepare(&ctx->words.entries[i]);
++    }
+     for (size_t i = 0; i < TF_QUICK_PROGRAM_CACHE_CAP; i++) {
+         tf_quick_program *quick = ctx->quick_programs[i];
+         if (quick) {
+@@ -430,6 +439,42 @@ static void frame_push_program_kind(tf_ctx *ctx, tf_obj *program,
+     TF_METRIC_MAX(ctx, max_frame_depth, ctx->call_stack_len);
+ }
+ 
++static void frame_push_user(tf_ctx *ctx, tf_word *word) {
++    tf_obj *program = word->user_impl;
++    size_t package_index = word->package_index;
++    if (word->prepared) {
++        tf_quick_program *quick = word->prepared;
++        ensure_call_stack_slot(ctx);
++        tf_frame *frame = &ctx->call_stack[ctx->call_stack_len];
++        frame->kind = TF_FRAME_PROGRAM_USER;
++        frame->as.program.program = program;
++        frame->as.program.pc = 0;
++        frame->as.program.package_index = package_index;
++        frame->as.program.quick = quick;
++        quick->refcount++;
++        frame->as.program.vars.base = ctx->captures_len;
++        frame->as.program.vars.len = 0;
++        frame->as.program.repeats = 0;
++        frame->call_site = ctx->current_span;
++        tf_obj_retain(program);
++        ctx->call_stack_len++;
++        TF_METRIC_INC(ctx, program_frames);
++        TF_METRIC_MAX(ctx, max_frame_depth, ctx->call_stack_len);
++        return;
++    }
++    size_t index = (size_t)(word - ctx->words.entries);
++    frame_push_program_kind(ctx, program, TF_FRAME_PROGRAM_USER, package_index);
++    tf_quick_program *quick = ctx->call_stack[ctx->call_stack_len - 1].as.program.quick;
++    /* Cache eviction may destroy values and invoke a host resource destructor.
++     * Reacquire the dictionary entry before publishing prepared metadata. */
++    word = &ctx->words.entries[index];
++    if (quick && word->type == TF_WORD_USER && word->user_impl == program &&
++        word->package_index == package_index && !word->prepared) {
++        quick->refcount++;
++        word->prepared = quick;
++    }
++}
++
+ void tf_frame_push_program(tf_ctx *ctx, tf_obj *program) {
+     frame_push_program_kind(ctx, program, TF_FRAME_PROGRAM,
+                             program_package_index(ctx, program));
+@@ -968,8 +1013,7 @@ static tf_ret dict_call_resolved(tf_ctx *ctx, tf_word *word) {
+     TF_METRIC_INC(ctx, general_dispatches);
+     if (word->type == TF_WORD_USER) {
+         TF_METRIC_INC(ctx, user_word_calls);
+-        frame_push_program_kind(ctx, word->user_impl, TF_FRAME_PROGRAM_USER,
+-                                word->package_index);
++        frame_push_user(ctx, word);
+         return TF_OK;
+     }
+     TF_METRIC_INC(ctx, native_word_calls);
+diff --git a/src/tf_exec.h b/src/tf_exec.h
+index 7710581..c55b227 100644
+--- a/src/tf_exec.h
++++ b/src/tf_exec.h
+@@ -45,6 +45,7 @@ typedef struct {
+ } tf_builtin_group;
+ 
+ typedef enum { TF_WORD_NATIVE, TF_WORD_USER } tf_word_kind;
++typedef struct tf_quick_program tf_quick_program;
+ #define TF_WORD_LOOKUP_CACHE_CAP 64
+ #define TF_QUICK_PROGRAM_CACHE_CAP 256
+ #define TF_QUICK_PROGRAM_CACHE_WAYS 4
+@@ -110,6 +111,7 @@ typedef struct {
+         tf_native_fn native_impl;
+         tf_obj *user_impl;
+     };
++    tf_quick_program *prepared;
+ } tf_word;
+ 
+ typedef void (*tf_visible_word_fn)(const char *display_name,
+@@ -171,13 +173,13 @@ typedef struct {
+     tf_quick_call_kind kind;
+ } tf_quick_call;
+ 
+-typedef struct {
++struct tf_quick_program {
+     size_t refcount;
+     tf_obj *program;
+     size_t package_index;
+     size_t len;
+     tf_quick_call calls[];
+-} tf_quick_program;
++};
+ 
+ #ifdef TF_OBSERVE
+ typedef struct {
+@@ -482,6 +484,7 @@ const tf_builtin_group *tf_builtin_groups(size_t *count);
+ 
+ /* Global word dictionary. */
+ void tf_dict_init(tf_ctx *ctx, size_t initial_word_count);
++void tf_word_unprepare(tf_word *word);
+ void tf_dict_free(tf_ctx *ctx);
+ void tf_dict_set_native(tf_ctx *ctx, const char *name, tf_native_fn cb);
+ void tf_dict_set_native_copy(tf_ctx *ctx, const char *name, tf_native_fn cb);

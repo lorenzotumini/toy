@@ -87,6 +87,9 @@ timing with counters, allocation statistics, profiles, and leak checks, see
 
 Current workloads:
 
+- `call-path.toy`: checksum-validated inline, user-word, quotation and symbol
+  calls, boolean versus quotation predicates, equivalent Fibonacci variants,
+  and a fold control; diagnostics rather than an application score.
 - `captures.toy`: checked deep capture-free call chains and repeated wide local
   scopes, isolating dynamic lookup and capture-storage costs.
 - `cross-language/`: optional checksum-validated microbenchmarks and log-report
@@ -125,6 +128,30 @@ Current workloads:
   string transforms, splitting, and incremental growth.
 - `vector.toy`: unique `push-back`, non-shrinking `pop-back`, indexed reads,
   and unique/shared-left `concat`.
+
+## Call-Path Diagnostics
+
+Use the phase runner to distinguish individual call shapes instead of treating
+the entire diagnostic process as one score:
+
+```console
+python3 benchmarks/measure-call-path.py \
+  --baseline path/to/baseline/toy --toy path/to/candidate/toy \
+  --runs 9 --output build/call-path.json
+python3 -B -m unittest discover -s benchmarks -p 'test_*.py' -v
+```
+
+Each fresh process verifies all ten checksums. The runner validates the complete
+output, discards one warmup per executable, alternates paired execution order,
+and records raw wall-time samples and executable/source hashes. Phase order is
+fixed within each process. The Fibonacci variants deliberately use the same
+naive algorithm; they compare execution idioms, not good application algorithms.
+Quotation predicates sandbox the ambient stack, so their timing includes more
+than the quotation call alone.
+
+The [call-path experiment](results/2026-09-11-call-path.md) records four rejected
+runtime prototypes. It illustrates why an isolated call-loop win or a reduction
+in continuation counters is not sufficient evidence of an application gain.
 
 ## Application Workloads
 

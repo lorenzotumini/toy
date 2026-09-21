@@ -1,0 +1,51 @@
+diff --git a/src/tf_builtins_control.c b/src/tf_builtins_control.c
+index 9536fcc..2822968 100644
+--- a/src/tf_builtins_control.c
++++ b/src/tf_builtins_control.c
+@@ -1047,6 +1047,28 @@ static void if_cleanup(tf_ctx *ctx, void *state, tf_ret status) {
+     control_state_release(ctx, s, sizeof(*s));
+ }
+ 
++static void if_start(tf_ctx *ctx, if_state *state) {
++    tf_frame_push_native(ctx, if_step, if_cleanup, state);
++    /* Preserve the first VM boundary when an observer or pending event can
++     * see it. In particular, deferred handlers run before predicate snapshots. */
++    if (ctx->debug_hook || ctx->deferred_head || ctx->interrupted) return;
++
++    /* Schedule vectors directly, never execute a symbol here: it may resolve
++     * to another combinator and recurse through the C stack. Keep the native
++     * frame (and its owned values) until the ordinary completion step. */
++    if (tf_obj_typeof(state->cond) == TF_OBJ_TYPE_VECTOR) {
++        predicate_save_stack(ctx, &state->pred_eval);
++        state->pred_eval.phase = TF_PRED_AWAITING;
++        tf_frame_push_program(ctx, state->cond);
++    } else if (tf_obj_typeof(state->cond) == TF_OBJ_TYPE_BOOL) {
++        tf_obj *body = state->cond->b ? state->then_b : state->else_b;
++        if (body && tf_obj_typeof(body) == TF_OBJ_TYPE_VECTOR) {
++            state->stage = TF_IF_BODY;
++            tf_frame_push_program(ctx, body);
++        }
++    }
++}
++
+ typedef enum { TF_WHILE_COND, TF_WHILE_BODY } while_stage;
+ 
+ typedef struct {
+@@ -1866,7 +1888,7 @@ tf_ret tf_if(tf_ctx *ctx) {
+     state->stage = TF_IF_COND;
+     predicate_eval_init(&state->pred_eval);
+ 
+-    tf_frame_push_native(ctx, if_step, if_cleanup, state);
++    if_start(ctx, state);
+     return TF_OK;
+ }
+ 
+@@ -1968,7 +1990,7 @@ tf_ret tf_ifelse(tf_ctx *ctx) {
+     state->stage = TF_IF_COND;
+     predicate_eval_init(&state->pred_eval);
+ 
+-    tf_frame_push_native(ctx, if_step, if_cleanup, state);
++    if_start(ctx, state);
+     return TF_OK;
+ }
+ 

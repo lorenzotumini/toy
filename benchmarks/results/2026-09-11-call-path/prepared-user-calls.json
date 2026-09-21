@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-11T14:14:55.084016+00:00",
+  "platform": "Linux-7.2.3-arch1-3-x86_64-with-glibc2.44",
+  "runs": 5,
+  "warmups_per_executable": 1,
+  "timing": "wall time; fresh processes, alternating pair order, fixed phase order",
+  "executables": {
+    "baseline": {
+      "path": "/home/lorenzo/Projects/toy/build/perf/call-path/baseline/toy",
+      "sha256": "533d5576f35fb1413e4970da9dd732c5b39374dc1047e8e51118086786927bbc"
+    },
+    "candidate": {
+      "path": "/home/lorenzo/Projects/toy/build/perf/call-path/prepared-user/toy",
+      "sha256": "235cd64e7df80ce75656274a4561adedfe166d16e8dd24a7ad6fa171bd367c02"
+    }
+  },
+  "source_sha256": "3d7198ba74d0a5685c4d69d9850ed755900e653fa55052ed31496294a1af3905",
+  "expected": {
+    "inline": 5000000,
+    "user-word": 5000000,
+    "quotation-exec": 5000000,
+    "symbol-exec": 5000000,
+    "boolean-branch": 1000000,
+    "predicate-branch": 1000000,
+    "fib-word": 317811,
+    "fib-predicate": 317811,
+    "fib-binrec": 317811,
+    "fold": 19999900000
+  },
+  "summaries": [
+    {
+      "case": "inline",
+      "baseline_median_ms": 52.964341,
+      "candidate_median_ms": 51.587074,
+      "median_paired_ratio": 0.9922207519613436
+    },
+    {
+      "case": "user-word",
+      "baseline_median_ms": 107.436869,
+      "candidate_median_ms": 100.020679,
+      "median_paired_ratio": 0.9333034980569233
+    },
+    {
+      "case": "quotation-exec",
+      "baseline_median_ms": 134.527311,
+      "candidate_median_ms": 136.383307,
+      "median_paired_ratio": 1.0308577976637294
+    },
+    {
+      "case": "symbol-exec",
+      "baseline_median_ms": 153.105645,
+      "candidate_median_ms": 144.334747,
+      "median_paired_ratio": 0.9528735779141724
+    },
+    {
+      "case": "boolean-branch",
+      "baseline_median_ms": 41.205331,
+      "candidate_median_ms": 41.938823,
+      "median_paired_ratio": 1.0110743437542098
+    },
+    {
+      "case": "predicate-branch",
+      "baseline_median_ms": 74.755179,
+      "candidate_median_ms": 76.147504,
+      "median_paired_ratio": 1.0346658657589463
+    },
+    {
+      "case": "fib-word",
+      "baseline_median_ms": 78.845715,
+      "candidate_median_ms": 77.415322,
+      "median_paired_ratio": 0.9880498714403971
+    },
+    {
+      "case": "fib-predicate",
+      "baseline_median_ms": 144.898926,
+      "candidate_median_ms": 151.377329,
+      "median_paired_ratio": 1.0228954837111768
+    },
+    {
+      "case": "fib-binrec",
+      "baseline_median_ms": 81.887436,
+      "candidate_median_ms": 82.326671,
+      "median_paired_ratio": 1.0195992031620866
+    },
+    {
+      "case": "fold",
+      "baseline_median_ms": 3.958181,
+      "candidate_median_ms": 4.03927,
+      "median_paired_ratio": 1.0204864305093677
+    },
+    {
+      "case": "process",
+      "baseline_median_ms": 869.508305,
+      "candidate_median_ms": 868.242734,
+      "median_paired_ratio": 0.9996846331928215
+    }
+  ],
+  "samples": [
+    {
+      "baseline": {
+        "inline": 54.2186,
+        "user-word": 107.168439,
+        "quotation-exec": 131.878103,
+        "symbol-exec": 150.540081,
+        "boolean-branch": 41.110792,
+        "predicate-branch": 72.759837,
+        "fib-word": 77.944415,
+        "fib-predicate": 144.00623,
+        "fib-binrec": 81.887436,
+        "fold": 3.944119,
+        "process": 866.280809
+      },
+      "candidate": {
+        "inline": 51.410602,
+        "user-word": 100.020679,
+        "quotation-exec": 136.383307,
+        "symbol-exec": 144.626743,
+        "boolean-branch": 42.708623,
+        "predicate-branch": 79.489014,
+        "fib-word": 77.415322,
+        "fib-predicate": 150.451141,
+        "fib-binrec": 81.060012,
+        "fold": 3.930261,
+        "process": 868.242734
+      }
+    },
+    {
+      "candidate": {
+        "inline": 54.352685,
+        "user-word": 113.155958,
+        "quotation-exec": 142.254966,
+        "symbol-exec": 147.343172,
+        "boolean-branch": 41.424974,
+        "predicate-branch": 74.296162,
+        "fib-word": 76.672942,
+        "fib-predicate": 152.526198,
+        "fib-binrec": 86.350662,
+        "fold": 4.258068,
+        "process": 893.464705
+      },
+      "baseline": {
+        "inline": 51.66215,
+        "user-word": 108.724628,
+        "quotation-exec": 137.996692,
+        "symbol-exec": 154.630347,
+        "boolean-branch": 42.493466,
+        "predicate-branch": 75.596572,
+        "fib-word": 83.092042,
+        "fib-predicate": 150.938162,
+        "fib-binrec": 83.664904,
+        "fold": 4.02522,
+        "process": 893.746563
+      }
+    },
+    {
+      "baseline": {
+        "inline": 54.577383,
+        "user-word": 112.581072,
+        "quotation-exec": 137.793421,
+        "symbol-exec": 155.653243,
+        "boolean-branch": 41.937756,
+        "predicate-branch": 75.087593,
+        "fib-word": 78.845715,
+        "fib-predicate": 148.787061,
+        "fib-binrec": 83.4946,
+        "fold": 4.159319,
+        "process": 893.737515
+      },
+      "candidate": {
+        "inline": 55.157169,
+        "user-word": 102.720152,
+        "quotation-exec": 131.388134,
+        "symbol-exec": 138.544823,
+        "boolean-branch": 41.938823,
+        "predicate-branch": 76.147504,
+        "fib-word": 79.797245,
+        "fib-predicate": 151.377329,
+        "fib-binrec": 81.737586,
+        "fold": 3.926154,
+        "process": 863.505671
+      }
+    },
+    {
+      "candidate": {
+        "inline": 50.908836,
+        "user-word": 98.938808,
+        "quotation-exec": 132.460033,
+        "symbol-exec": 144.334747,
+        "boolean-branch": 42.226717,
+        "predicate-branch": 75.536445,
+        "fib-word": 77.37877,
+        "fib-predicate": 148.216457,
+        "fib-binrec": 82.326671,
+        "fold": 4.050148,
+        "process": 857.229312
+      },
+      "baseline": {
+        "inline": 52.964341,
+        "user-word": 107.436869,
+        "quotation-exec": 130.408225,
+        "symbol-exec": 149.248751,
+        "boolean-branch": 40.813195,
+        "predicate-branch": 72.252133,
+        "fib-word": 78.552335,
+        "fib-predicate": 144.898926,
+        "fib-binrec": 80.74415,
+        "fold": 3.77478,
+        "process": 861.886744
+      }
+    },
+    {
+      "baseline": {
+        "inline": 51.991529,
+        "user-word": 105.360462,
+        "quotation-exec": 134.527311,
+        "symbol-exec": 153.105645,
+        "boolean-branch": 41.205331,
+        "predicate-branch": 74.755179,
+        "fib-word": 79.355799,
+        "fib-predicate": 143.785115,
+        "fib-binrec": 80.711468,
+        "fold": 3.958181,
+        "process": 869.508305
+      },
+      "candidate": {
+        "inline": 51.587074,
+        "user-word": 99.389835,
+        "quotation-exec": 138.808344,
+        "symbol-exec": 144.26786,
+        "boolean-branch": 41.661653,
+        "predicate-branch": 77.346632,
+        "fib-word": 78.407487,
+        "fib-predicate": 152.035607,
+        "fib-binrec": 83.344903,
+        "fold": 4.03927,
+        "process": 871.730734
+      }
+    }
+  ]
+}
