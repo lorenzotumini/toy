@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_tools_internal_analysis_core_package_docs_generated_go", "label": "core_package_docs_generated.go", "file_type": "code", "source_file": "tools/internal/analysis/core_package_docs_generated.go", "source_location": "L1"}], "edges": [], "raw_calls": [], "go_imports": {}}
